@@ -1,19 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "../App.css";
 
 interface NavBarProps {
   brandName: string;
   imageSrcPath: string;
-  navItems: string[];
+  navItems: { label: string; path: string }[]; // Correct type for navItems
 }
 
 function NavBar({ brandName, imageSrcPath, navItems }: NavBarProps) {
-  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const location = useLocation(); // Hook to get the current route
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark shadow">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           <img
             src={imageSrcPath}
             width="60"
@@ -22,7 +23,7 @@ function NavBar({ brandName, imageSrcPath, navItems }: NavBarProps) {
             alt=""
           />
           <span className="fw-bolder fs-4 p-3">{brandName}</span>
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -35,27 +36,22 @@ function NavBar({ brandName, imageSrcPath, navItems }: NavBarProps) {
           <span className="navbar-toggler-icon" />
         </button>
         <div
-          className="collapse
-         navbar-collapse"
+          className="collapse navbar-collapse" // Fixed class structure
           id="navbarSupportedContent"
         >
-          <ul className="navbar-nav me-auto mb-2 mb-md-1">
-            {navItems.map((items, index) => (
-              <li
-                key={items}
-                className="nav-item"
-                onClick={() => setSelectedIndex(index)}
-              >
-                <a
+          <ul className="navbar-nav me-auto mb-2 mb-md-0">
+            {navItems.map((item) => (
+              <li key={item.path} className="nav-item">
+                <Link
+                  to={item.path}
                   className={
-                    selectedIndex == index
+                    location.pathname === item.path
                       ? "nav-link active fw-bold"
                       : "nav-link"
                   }
-                  href="#"
                 >
-                  {items}
-                </a>
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
