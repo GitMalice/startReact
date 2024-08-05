@@ -1,5 +1,6 @@
 import React from "react";
 import LVMsc from "../assets/backup/Capture-LVM.png";
+import CaptureScript from "../assets/backup/Capture-script.png";
 
 const Backup = () => {
   return (
@@ -100,6 +101,129 @@ const Backup = () => {
         Nous avons bien maintenant 15Go d'espace de disponible, ce qui
         correspond bien au premier disque et celui de 5 Go ajouté ensuite.
         SUCCESS !!!
+      </p>
+
+      <h4 className="sous-titre">Sauvegardes automatisées</h4>
+      <p>
+        Nous partons sur la solution rsync pour faire une copie de notre serveur
+        source, qui sera ensuite automatisée par un Cron job.
+      </p>
+      <p>
+        Nous installons <b>rsync</b> sur la machine source et la machine cible,
+        ainsi que openSSH pour faire la liaison.
+      </p>
+      <p className="code">
+        sudo apt install rsync
+        <br />
+        sudo apt install openssh-server
+      </p>
+      <p>On génère ensuite une paire de clés sur la machine source :</p>
+      <p className="code">ssh-keygen -t rsa -b 4096</p>
+      <p>
+        On envoie la clé vers le serveur de backup (192.168.1.62) pour
+        s'identifier :
+      </p>
+      <p className="code">ssh-copy-id adil@192.168.1.62</p>
+      <p className="code-expln">
+        avec option -i pour spécifier un chemin de clé précis
+      </p>
+      <p>On peut maintenant établir une connexion :</p>
+      <p className="code">ssh adil@192.168.1.62</p>
+      <h5 className="sous-titre">Génération du script de backup</h5>
+      <p>
+        Pour pouvoir automatiser le procédé, on passe les commandes dans un
+        script :
+      </p>
+      <p className="code">
+        #!/bin/bash
+        <br />
+        # Variables
+        <br />
+        SOURCE_DIR="/home/adil/save"
+        <br />
+        BACKUP_DIR="/backup/"
+        <br />
+        BACKUP_HOST="adil@192.168.1.62"
+        <br />
+        DATE=$(date +'%Y%m%d%H%M')
+        <br />
+        LOGFILE="/var/log/backup-$DATE.log"
+        <br />
+        <br />
+        # Exécuter rsync pour la sauvegarde
+        <br />
+        rsync -avz --delete $SOURCE_DIR $BACKUP_HOST:$BACKUP_DIR &gt; $LOGFILE
+        2&gt;&1
+        <br />
+        # Vérifier le résultat
+        <br />
+        if [ $? -eq 0 ]; then
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;echo "Backup successful at $DATE" &gt;&gt;
+        $LOGFILE
+        <br />
+        else
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;echo "Backup failed at $DATE" &gt;&gt; $LOGFILE
+        <br />
+        fi
+      </p>
+      <p className="code_expl">
+        Explication des Options rsync : <br />
+        <b>-a</b> : Archive, pour conserver les attributs des fichiers.
+        <br />
+        <b>-v</b> : Verbeux, pour afficher les détails du processus.
+        <br />
+        <b>-z</b> : Compression, pour réduire la bande passante utilisée pendant
+        la transmission.
+        <br />
+        <b>--delete</b> : Supprimer les fichiers sur le serveur de sauvegarde
+        qui ne sont plus présents sur le serveur source.
+      </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={CaptureScript}
+          alt="code de déploiement apache"
+        />
+      </div>
+      <p>
+        Attention, pour que l'opération soit permise, l'utilisateur doit avoir
+        les droits sur les répertoires sources et destination. On lui octroie
+        les accès avec les fonctions :
+      </p>
+      <p className="code">
+        sudo chown adil /home/adil/save
+        <br />
+        sudo chmod 755 /home/adil/save
+        <br />
+        chown adil /backup
+        <br />
+        chmod 755 /backup
+      </p>
+      <p>
+        Pour que cela fonctionne, c'est le droit à l'éxécution qui est
+        fondamental.
+      </p>
+      <p>Pour rendre le script exécutable :</p>
+      <p className="code">sudo chmod +x /usr/local/bin/backup-script.sh</p>
+      <h5 className="sous_titre">Automatisation par les Cron jobs</h5>
+      <p>Les Cron jobs sont simples d'utilisation, on y accède ainsi :</p>
+      <p className="code">crontab -e</p>
+      <p>On ajoute la ligne qui correspond à notre tâche et sa fréquence :</p>
+      <p className="code">
+        0 2 * * * /usr/local/bin/backup-script.sh &gt;&gt; /var/log/backup.log
+        2&gt;&1
+      </p>
+      <p className="code-expl">
+        avec la structure qui reprend les champs : minute heure jour mois année,
+        puis la tâche à exécuter
+        <br />
+        Par exemple, la ligne :<br />
+        55 16 * * * /usr/local/bin/backup-script.sh &gt;&gt; /var/log/backup.log
+        2&gt;&1
+        <br />
+        va s'exécuter tous les jours à 16h55 !
       </p>
     </div>
   );

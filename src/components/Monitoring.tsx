@@ -2,7 +2,7 @@ import React from "react";
 import GitLabStart from "../assets/gitlab/capture-1ere-co-gitlab.png";
 import GitLabDashboard from "../assets/gitlab/dashboard-gitlab.png";
 
-const Glpi = () => {
+const Monitoring = () => {
   return (
     <div>
       <h2 className="etape">Installation d'un serveur GitLab</h2>
@@ -14,4 +14,4 @@ const Glpi = () => {
   );
 };
 
-export default Glpi;
+export default Monitoring;

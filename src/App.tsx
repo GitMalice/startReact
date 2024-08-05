@@ -11,7 +11,7 @@ import Apache from "./components/Apache";
 import Home from "./components/Home";
 import Gitlab from "./components/Gitlab";
 import Backup from "./components/Backup";
-import Glpi from "./components/Glpi";
+import Monitoring from "./components/Monitoring";
 import Samba from "./components/Samba";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
     { label: "Apache", path: "/apache" },
     { label: "Backup", path: "/backup" },
     { label: "Gitlab", path: "/gitlab" },
-    { label: "GLPI", path: "/glpi" },
+    { label: "Monitoring", path: "/monitoring" },
     { label: "Samba", path: "/samba" },
   ];
   return (
@@ -44,7 +44,7 @@ function App() {
               <Route path="/apache" element={<Apache />} />
               <Route path="/backup" element={<Backup />} />
               <Route path="/gitlab" element={<Gitlab />} />
-              <Route path="/glpi" element={<Glpi />} />
+              <Route path="/monitoring" element={<Monitoring />} />
               <Route path="/samba" element={<Samba />} />
             </Routes>
           </div>
