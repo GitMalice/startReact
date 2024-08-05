@@ -32,11 +32,13 @@ function App() {
           render={(item: string) => <span className="menu">{item}</span>}
         /> */}
         <div className="viewer">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/apache" element={<Apache />} />
-            <Route path="/gitlab" element={<Gitlab />} />
-          </Routes>
+          <div className="content mx-3 mx-md-5">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/apache" element={<Apache />} />
+              <Route path="/gitlab" element={<Gitlab />} />
+            </Routes>
+          </div>
         </div>
       </Router>
     </>
