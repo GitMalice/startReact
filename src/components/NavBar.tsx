@@ -5,11 +5,11 @@ import "../App.css";
 interface NavBarProps {
   brandName: string;
   imageSrcPath: string;
-  navItems: { label: string; path: string }[]; // Correct type for navItems
+  navItems: { label: string; path: string }[];
 }
 
 function NavBar({ brandName, imageSrcPath, navItems }: NavBarProps) {
-  const location = useLocation(); // Hook to get the current route
+  const location = useLocation();
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark shadow">
@@ -35,10 +35,7 @@ function NavBar({ brandName, imageSrcPath, navItems }: NavBarProps) {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div
-          className="collapse navbar-collapse" // Fixed class structure
-          id="navbarSupportedContent"
-        >
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-md-0">
             {navItems.map((item) => (
               <li key={item.path} className="nav-item">

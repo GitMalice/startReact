@@ -1,3 +1,24 @@
+* {
+  margin: 0;
+  padding: 0.25 rem;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: whitesmoke;
+  color: darkolivegreen;
+  display: grid;
+  /*place-content: center;*/
+}
+
+button {
+  font-size: 2rem;
+}
+
+.menu {
+  display: inline;
+}
+
 /* STYLE NAVBAR */
 
 .nav-item {
@@ -25,20 +46,20 @@
 
 /* éléments du conteneur */
 .etape {
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin-top: 60px;
+  margin-bottom: 30px;
 }
 
 .sous-titre {
-  margin-top: 30px;
-  margin-bottom: 10px;
+  margin-top: 50px;
+  margin-bottom: 15px;
 }
 
 .code {
   margin: 0 2rem;
   padding: 0.2rem 2rem;
   color: grey;
-  font-weight: 600;
+  font-weight: 700;
   background-color: rgba(128, 128, 0, 0.11);
 }
 
@@ -46,4 +67,9 @@
   margin: 0 2rem;
   padding: 0.2rem 2rem;
   color: rgb(146, 146, 33);
+  background-color: rgba(128, 128, 0, 0.041);
+}
+
+.screenshot {
+  border: red;
 }
