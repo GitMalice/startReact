@@ -25,27 +25,21 @@ const Apache = () => {
       </p>
       <p className="code_expl">
         <b>openssl req</b> est la commande pour générer une signature de
-        certificat (CSR).
-      </p>
-      <p className="code_expl">
+        certificat (CSR). <br />
         <b>-x509</b> indique de créer un certificat auto-signé plutôt qu'une
         demande de signature (utilisé pour les environnements de test ou en
         interne).
-      </p>
-      <p className="code_expl">
+        <br />
         <b>-nodes, pour "no DES" (Data Encryption Standard)</b> indique que la
         clé privée ne sera pas protégée par un mot de passe - pratique pour les
         redémarrages automatiques sans intervention humaine mais moins sécurisé.
-      </p>
-      <p className="code_expl">
+        <br />
         <b>-days 365</b> indique la durée de validité du certificats en jours,
         soit une année.
-      </p>
-      <p className="code_expl">
+        <br />
         <b>-newkey rsa:2048</b> indique de générer une nouvelle clé privée RSA
         de 2048 bits en parallèle du certificat.
-      </p>
-      <p className="code_expl">
+        <br />
         <b>-keyout et -out</b> indiquent respectivement les chemins des fichiers
         des clé et certificats générés.
       </p>
