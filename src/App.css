@@ -25,20 +25,20 @@
 
 /* éléments du conteneur */
 .etape {
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin-top: 60px;
+  margin-bottom: 30px;
 }
 
 .sous-titre {
-  margin-top: 30px;
-  margin-bottom: 10px;
+  margin-top: 40px;
+  margin-bottom: 15px;
 }
 
 .code {
   margin: 0 2rem;
   padding: 0.2rem 2rem;
   color: grey;
-  font-weight: 600;
+  font-weight: 700;
   background-color: rgba(128, 128, 0, 0.11);
 }
 
@@ -46,4 +46,16 @@
   margin: 0 2rem;
   padding: 0.2rem 2rem;
   color: rgb(146, 146, 33);
+  background-color: rgba(128, 128, 0, 0.041);
+}
+
+.screenshot {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+.sc-img {
+  margin: 0 2rem;
+  max-width: 839px;
+  border: 1px solid olive;
 }

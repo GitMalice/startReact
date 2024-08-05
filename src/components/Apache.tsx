@@ -1,4 +1,5 @@
 import React from "react";
+import ApacheImage1 from "../assets/apache/apache_restart.png";
 
 const Apache = () => {
   return (
@@ -54,6 +55,13 @@ const Apache = () => {
       <p className="code">
         nano /etc/apache2/sites-available/http-to-https-conf
       </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={ApacheImage1}
+          alt="code de déploiement apache"
+        />
+      </div>
     </div>
   );
 };
