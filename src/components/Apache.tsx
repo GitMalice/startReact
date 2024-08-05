@@ -1,5 +1,7 @@
 import React from "react";
 import ApacheImage1 from "../assets/apache/apache_restart.png";
+import ApacheImageConfigHTTPS from "../assets/apache/config-serverweb-http.png";
+import ApacheImageConfigHTTP from "../assets/apache/config-serverweb-https.png";
 
 const Apache = () => {
   return (
@@ -46,11 +48,22 @@ const Apache = () => {
         <b>-keyout et -out</b> indiquent respectivement les chemins des fichiers
         des clé et certificats générés.
       </p>
-      <h5 className="sous-titre">Redirection du HTTPS</h5>
+      <h5 className="sous-titre">
+        Configuration du HTTP pour la redirection HTTPS
+      </h5>
+      <p>On édite dans un premier temps le fichier de configuration HTTP :</p>
+      <p className="code">nano /etc/apache2/sites-available/000-default.conf</p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={ApacheImageConfigHTTP}
+          alt="code de déploiement HTTP apache"
+        />
+      </div>
       <p>
-        On édite les fichiers de configuration du site pour implémenter une
-        redirection automatique de HTTP vers HTTPS. Les fichiers concernant le
-        site sont stockés par défaut dans /etc/apachesites-available/ .
+        On crée le fichier de configuration pour implémenter une redirection
+        automatique de HTTP vers HTTPS. Les fichiers concernant le site sont
+        stockés par défaut dans /etc/apache2/sites-available/ .
       </p>
       <p className="code">
         nano /etc/apache2/sites-available/http-to-https-conf
@@ -58,10 +71,39 @@ const Apache = () => {
       <div className="screenshot">
         <img
           className="sc-img"
+          src={ApacheImageConfigHTTPS}
+          alt="code de déploiement HTTP apache"
+        />
+      </div>
+      <div className="screenshot">
+        <img
+          className="sc-img"
           src={ApacheImage1}
           alt="code de déploiement apache"
         />
       </div>
+      <p>
+        Apache permettant d'héberger plusieurs sites, on précise celui que l'on
+        veut activer avec ces commandes : <br />
+        (Apache va créer des liens vers ces références de configurations comme
+        celle du site actif)
+      </p>
+      <p className="code">
+        a2ensite http-to-https.conf
+        <br />
+        a2ensite 000-default.conf
+      </p>
+      <p>
+        On active les modules Apache dont on va se servir avec ces commandes,
+        puis on relance le service :
+      </p>
+      <p className="code">
+        a2enmod ssl
+        <br />
+        a2enmod rewrite
+        <br />
+        systemctl restart apache2
+      </p>
     </div>
   );
 };

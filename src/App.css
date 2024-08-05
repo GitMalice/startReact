@@ -17,6 +17,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .content {
@@ -36,6 +37,7 @@
 
 .code {
   margin: 0 2rem;
+  margin-bottom: 10px;
   padding: 0.2rem 2rem;
   color: grey;
   font-weight: 700;
