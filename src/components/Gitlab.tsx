@@ -1,59 +1,71 @@
 import React from "react";
+import GitLabStart from "../assets/gitlab/capture-1ere-co-gitlab.png";
+import GitLabDashboard from "../assets/gitlab/dashboard-gitlab.png";
 
 const Gitlab = () => {
   return (
     <div>
-      <h2 className="etape">Installation d'un serveur apache</h2>
+      <h2 className="etape">Installation d'un serveur GitLab</h2>
       <p>
-        Nous allons déployer un serveur web sur notre machine Linux grâce à
-        Apache. On commence par l'installation du package :
+        Pour installer un serveur GitLab interne à notre équipe, nous
+        l'installons sur un serveur Linux dédié.
       </p>
-      <p className="code">sudo apt install apache2</p>
-      <h5 className="sous-titre">Génération des certificats</h5>
       <p>
-        On s'occupe de la génération des certificats pour rassurer sur
-        l'authenticité du site.
+        La documentation officielle détaille efficacement les étapes :<br />
+        <a href="https://about.gitlab.com/install/#ubuntu">
+          https://about.gitlab.com/install/#ubuntu
+        </a>
+      </p>
+      <p>On commence par installer les dépendances nécessaires :</p>
+      <p className="code">
+        sudo apt-get update
+        <br />
+        sudo apt-get install -y curl openssh-server ca-certificates tzdata perl
+      </p>
+      <p>On ajoute Postfix pour les notifications emails :</p>
+      <p className="code">sudo apt-get install -y postfix</p>
+      <h5 className="sous-titre">
+        Installation du package GitLab depuis son dépôt distant :
+      </h5>
+      <p className="code">
+        curl
+        https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh
+        | sudo bash
+      </p>
+      <p>
+        Pour configurer notre DNS, on précise notre URL (localhost dans notre
+        cas):
       </p>
       <p className="code">
-        openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout
-        /etc/ssl/private/apache-selfsigned.key -out
-        /etc/ssl/certs/apache-selfsigned.crt
+        sudo EXTERNAL_URL="https://localhost" apt-get install gitlab-ce
       </p>
-      <p className="code_expl">
-        <b>openssl req</b> est la commande pour générer une signature de
-        certificat (CSR).
-      </p>
-      <p className="code_expl">
-        <b>-x509</b> indique de créer un certificat auto-signé plutôt qu'une
-        demande de signature (utilisé pour les environnements de test ou en
-        interne).
-      </p>
-      <p className="code_expl">
-        <b>-nodes, pour "no DES" (Data Encryption Standard)</b> indique que la
-        clé privée ne sera pas protégée par un mot de passe - pratique pour les
-        redémarrages automatiques sans intervention humaine mais moins sécurisé.
-      </p>
-      <p className="code_expl">
-        <b>-days 365</b> indique la durée de validité du certificats en jours,
-        soit une année.
-      </p>
-      <p className="code_expl">
-        <b>-newkey rsa:2048</b> indique de générer une nouvelle clé privée RSA
-        de 2048 bits en parallèle du certificat.
-      </p>
-      <p className="code_expl">
-        <b>-keyout et -out</b> indiquent respectivement les chemins des fichiers
-        des clé et certificats générés.
-      </p>
-      <h5 className="sous-titre">Redirection du HTTPS</h5>
       <p>
-        On édite les fichiers de configuration du site pour implémenter une
-        redirection automatique de HTTP vers HTTPS. Les fichiers concernant le
-        site sont stockés par défaut dans /etc/apachesites-available/ .
+        Pour mettre à jour les derniers changements de configuration, on utilise
+        :
       </p>
-      <p className="code">
-        nano /etc/apache2/sites-available/http-to-https-conf
+      <p className="code">sudo gitlab-ctl reconfigure</p>
+      <p>
+        Après la configuration des mots de passe, GitLab tourne maintenant sur
+        le serveur.
       </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={GitLabStart}
+          alt="code de déploiement apache"
+        />
+      </div>
+      <p>
+        Il est ensuite recommandé d'adapter les droits d'accès et les
+        restrictions nécessaires pour optimiser la sécurité du serveur.
+      </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={GitLabDashboard}
+          alt="code de déploiement apache"
+        />
+      </div>
     </div>
   );
 };

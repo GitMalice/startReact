@@ -10,12 +10,18 @@ import imagePath from "./assets/tux_logo.png";
 import Apache from "./components/Apache";
 import Home from "./components/Home";
 import Gitlab from "./components/Gitlab";
+import Backup from "./components/Backup";
+import Glpi from "./components/Glpi";
+import Samba from "./components/Samba";
 
 function App() {
   let navItems = [
     { label: "Home", path: "/" },
     { label: "Apache", path: "/apache" },
+    { label: "Backup", path: "/backup" },
     { label: "Gitlab", path: "/gitlab" },
+    { label: "GLPI", path: "/glpi" },
+    { label: "Samba", path: "/samba" },
   ];
   return (
     <>
@@ -36,7 +42,10 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/apache" element={<Apache />} />
+              <Route path="/backup" element={<Backup />} />
               <Route path="/gitlab" element={<Gitlab />} />
+              <Route path="/glpi" element={<Glpi />} />
+              <Route path="/samba" element={<Samba />} />
             </Routes>
           </div>
         </div>

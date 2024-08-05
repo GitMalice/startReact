@@ -2,11 +2,12 @@ import React from "react";
 import ApacheImage1 from "../assets/apache/apache_restart.png";
 import ApacheImageConfigHTTPS from "../assets/apache/config-serverweb-http.png";
 import ApacheImageConfigHTTP from "../assets/apache/config-serverweb-https.png";
+import ApacheImageServerUp from "../assets/apache/capture_apache2.png";
 
 const Apache = () => {
   return (
     <div>
-      <h2 className="etape">Installation d'un serveur apache</h2>
+      <h2 className="etape">Installation d'un serveur Apache</h2>
       <p>
         Nous allons déployer un serveur web sur notre machine Linux grâce à
         Apache. On commence par l'installation du package :
@@ -104,6 +105,16 @@ const Apache = () => {
         <br />
         systemctl restart apache2
       </p>
+      <p>
+        Le service tourne maintenant, en HTTPS, avec le site de disponible :
+      </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={ApacheImageServerUp}
+          alt="code de déploiement apache"
+        />
+      </div>
     </div>
   );
 };
