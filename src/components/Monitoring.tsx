@@ -79,7 +79,7 @@ const Monitoring = () => {
         https://github.com/glpi-project/glpi/releases/download/$VER/glpi-$VER.tgz
       </p>
       <p>On décompresse l'archive obtenue :</p>
-      <p className="code">tar xvf glpi-$VER.tgz</p>
+      <p className="code">tar -xvf glpi-$VER.tgz</p>
       <p>On déplace le contenu là où l'on souhaite conserver l'application.</p>
       <p className="code">sudo mv glpi /var/www/html</p>
       <p>On modifie les droits de l'utilisateur sur le répertoire :</p>
