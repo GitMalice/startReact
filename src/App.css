@@ -112,3 +112,22 @@ button {
 .intro_hero {
   font-size: 2em;
 }
+
+.zoom_me {
+  position: relative;
+  overflow: hidden;
+}
+
+.zoom_me img {
+  display: block;
+  transition: transform 0.3s ease;
+  transform-origin: bottom;
+}
+
+.zoom_me:hover img {
+  transform: scale(1.5);
+}
+.zoom_me:hover {
+  width: 200%;
+  margin-left: -50%;
+}

@@ -44,7 +44,7 @@ const Projet = () => {
             Cette hiérarchie oriente notre choix d'architecture, pour cloisonner
             au mieux les différents accès :
           </p>
-          <div className="screenshot zoom-me">
+          <div className="screenshot zoom_me">
             <img
               className="sc-img"
               src={ArchiAll}
