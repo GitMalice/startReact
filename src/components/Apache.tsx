@@ -1,4 +1,3 @@
-import React from "react";
 import ApacheImage1 from "../assets/apache/apache_restart.png";
 import ApacheImageConfigHTTPS from "../assets/apache/config-serverweb-http.png";
 import ApacheImageConfigHTTP from "../assets/apache/config-serverweb-https.png";

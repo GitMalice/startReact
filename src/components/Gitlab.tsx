@@ -1,4 +1,3 @@
-import React from "react";
 import GitLabStart from "../assets/gitlab/capture-1ere-co-gitlab.png";
 import GitLabDashboard from "../assets/gitlab/dashboard-gitlab.png";
 

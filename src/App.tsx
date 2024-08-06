@@ -1,12 +1,11 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import Heading from "./components/Heading";
 // import { Section } from "./components/Section";
 // import List from "./components/List";
-import NavBar from "./components/NavBar";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import imagePath from "./assets/tux_logo.png";
+import NavBar from "./components/NavBar";
 import Apache from "./components/Apache";
 import Home from "./components/Home";
 import Gitlab from "./components/Gitlab";

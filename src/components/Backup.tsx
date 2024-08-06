@@ -1,4 +1,3 @@
-import React from "react";
 import LVMsc from "../assets/backup/Capture-LVM.png";
 import CaptureScript from "../assets/backup/Capture-script.png";
 

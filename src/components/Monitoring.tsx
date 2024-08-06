@@ -1,4 +1,3 @@
-import React from "react";
 import PrometheusService from "../assets/monitoring/config-prometheus-service.png";
 import PrometheusRunning from "../assets/monitoring/prometheus-running.jpg";
 
@@ -17,6 +16,68 @@ const Monitoring = () => {
       <p className="code">
         sudo apt -y install php
         php-&#123;curl,gd,imagick,intl,apcu,memcache,imap,mysql,cas,ldap,tidy,pear,xmlrpc,pspell,mbstring,json,iconv,xml,gd,xsl,zip,bz2&#125;
+        <br />
+        <br />
+        sudo apt-get -y install apache2 libapache2-mod-php
+      </p>
+      <p>
+        Installation de la base de données MariaDB pour stocker les données de
+        GLPI :
+      </p>
+      <p className="code">sudo apt -y install mariadb-server</p>
+      <p>Une fois installée, on peut s'y connecter :</p>
+      <p className="code">sudo mysql -u root -p</p>
+      <p>
+        Nous sommes maintenant dans l'invite de commande de manipulation mySQL,
+        nous allons créer notre base de données pour GLPI :
+      </p>
+      <p className="code">
+        CREATE DATABASE glpidb;
+        <br />
+        <br />
+        CREATE USER glpiuser@localhost IDENTIFIED BY 'passwordHere';
+        <br />
+        <br />
+        GRANT ALL PRIVILEGES ON glpidb.* TO glpiuser@localhost;
+        <br />
+        <br />
+        FLUSH PRIVILEGES;
+        <br />
+        <br />
+        exit;
+      </p>
+      <p>
+        On poursuit avec l'installation de GLPI en récupérant sa dernière
+        version sur le dépôt officiel :{" "}
+        <a href="https://glpi-project.org/downloads/"> (dépôt ici)</a>
+      </p>
+      <p className="code">
+        sudo apt-get -y install wget
+        <br />
+        export VER="10.0.11"
+        <br />
+        wget
+        https://github.com/glpi-project/glpi/releases/download/$VER/glpi-$VER.tgz
+      </p>
+      <p>On décompresse l'archive obtenue :</p>
+      <p className="code">tar xvf glpi-$VER.tgz</p>
+      <p>On déplace le contenu là où l'on souhaite conserver l'application.</p>
+      <p className="code">sudo mv glpi /var/www/html</p>
+      <p>On modifie les droits de l'utilisateur sur le répertoire :</p>
+      <p className="code">sudo chown -R userHere:userHere /var/www/html/glpi</p>
+      <p>
+        On redémarre ensuite Apache pour être sûr que les modifications sont
+        bien effectives
+      </p>
+      <p className="code">systemctl restart apache2</p>
+      <p>
+        Le portail est maintenant disponible sur le browser, avec le nom d'hôte
+        suivi du répertoire /glpi. Par exemple, on peut mettre //localhost/glpi.
+      </p>
+      <p>
+        A noter : les premiers identifiants sont utilisateur :{" "}
+        <b>glpi / glpi</b>, à modifier par la suite pour des raisons de
+        sécurité.
       </p>
       {/* INSTALLATION DE PROMETHEUS */}
       <h3 className="sous_titre">Prometheus, feu!</h3>
