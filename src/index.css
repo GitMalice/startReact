@@ -1,0 +1,23 @@
+<<<<<<< HEAD
+=======
+* {
+  margin: 0;
+  padding: 0.25 rem;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: whitesmoke;
+  color: darkolivegreen;
+  /*display: grid;*/
+  /*place-content: center;*/
+}
+
+button {
+  font-size: 2rem;
+}
+
+.menu {
+  display: inline;
+}
+>>>>>>> 53b989c467d4cad5ba68b486f5014625ad8de853

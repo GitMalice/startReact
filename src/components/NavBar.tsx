@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../App.css";
 
@@ -52,7 +52,7 @@ function NavBar({ brandName, imageSrcPath, navItems }: NavBarProps) {
               </li>
             ))}
           </ul>
-          <form className="d-flex me-3">
+          {/* <form className="d-flex me-3">
             <input
               className="form-control me-2"
               type="search"
@@ -62,7 +62,7 @@ function NavBar({ brandName, imageSrcPath, navItems }: NavBarProps) {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </nav>

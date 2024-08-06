@@ -38,6 +38,8 @@ button {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
+  padding: 0 25px;
 }
 
 .content {
@@ -46,6 +48,8 @@ button {
 
 /* éléments du conteneur */
 .etape {
+  margin-top: 60px;
+  margin-bottom: 30px;
   margin-top: 60px;
   margin-bottom: 30px;
 }
@@ -57,19 +61,20 @@ button {
 
 .code {
   margin: 0 2rem;
+  margin-bottom: 30px;
   padding: 0.2rem 2rem;
   color: grey;
   font-weight: 700;
+  font-weight: 700;
   background-color: rgba(128, 128, 0, 0.11);
+  /* max-width: 80%; */
+  word-wrap: break-word;
 }
 
 .code_expl {
   margin: 0 2rem;
+  margin-top: -10px;
+  margin-bottom: 30px;
   padding: 0.2rem 2rem;
   color: rgb(146, 146, 33);
-  background-color: rgba(128, 128, 0, 0.041);
-}
-
-.screenshot {
-  border: red;
 }
