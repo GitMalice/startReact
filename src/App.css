@@ -88,3 +88,26 @@
   width: 150%;
   margin: -25%;
 }
+
+.hero {
+  background-color: whitesmoke;
+  color: rgb(12, 90, 47);
+  text-shadow: 3px 3px 0 #fff, -3px -3px 0 #fff, 3px -3px 0 #fff,
+    -3px 3px 0 #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 3em;
+  font-weight: 800;
+  height: 100vh;
+  background-image: url("assets/projet/tux_logo_bg.svg"); /* Remplacez par le chemin de votre image */
+  background-attachment: fixed; /* Rend le fond d'écran fixe */
+  background-position: center; /* Centre l'image */
+  background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  background-size: cover; /* Redimensionne l'image pour couvrir tout l'écran */
+}
+
+.intro_hero {
+  font-size: 2em;
+}
