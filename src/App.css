@@ -79,6 +79,17 @@ button {
   color: rgb(146, 146, 33);
 }
 
+.screenshot {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+.sc-img {
+  margin: 0 2rem;
+  max-width: 839px;
+  border: 1px solid olive;
+}
+
 .hero {
   background-color: whitesmoke;
   color: rgb(12, 90, 47);
