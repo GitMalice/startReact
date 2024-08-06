@@ -1,34 +1,46 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Heading from "./components/Heading";
+// import { Section } from "./components/Section";
+// import List from "./components/List";
+import NavBar from "./components/NavBar";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import imagePath from "./assets/tux_logo.png";
+import Apache from "./components/Apache";
+import Home from "./components/Home";
+import Gitlab from "./components/Gitlab";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  let navItems = [
+    { label: "Home", path: "/" },
+    { label: "Apache", path: "/apache" },
+    { label: "Gitlab", path: "/gitlab" },
+  ];
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <h1>Test de modif</h1>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <NavBar
+          brandName="Go Linux PROJECT"
+          imageSrcPath={imagePath}
+          navItems={navItems}
+        />
+        {/* <Heading title={"Hello"} />
+        <Section title={"This is me"}>This is my section</Section>
+        <List
+          items={["menu1", "menu2", "menu3"]}
+          render={(item: string) => <span className="menu">{item}</span>}
+        /> */}
+        <div className="viewer">
+          <div className="content mx-3 mx-md-5">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/apache" element={<Apache />} />
+              <Route path="/gitlab" element={<Gitlab />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
     </>
   );
 }
