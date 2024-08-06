@@ -1,5 +1,17 @@
 import PrometheusService from "../assets/monitoring/config-prometheus-service.png";
 import PrometheusRunning from "../assets/monitoring/prometheus-running.jpg";
+import GLPIbdd from "../assets/monitoring/bdd_glpi.png";
+import GLPIrun from "../assets/monitoring/GLPI_running.png";
+import GLPIrun2 from "../assets/monitoring/GLPI_running2.png";
+import Grafana1 from "../assets/monitoring/grafana_1.png";
+import Grafana2 from "../assets/monitoring/grafana_2.png";
+import Grafana3 from "../assets/monitoring/grafana_3.png";
+import NodeExporter from "../assets/monitoring/node_exporter.png";
+import NodeExporter2 from "../assets/monitoring/node_exporter2.png";
+import NodeExporter3 from "../assets/monitoring/node_exporter3.png";
+import Zabbix from "../assets/monitoring/zabbix1.png";
+import Zabbix2 from "../assets/monitoring/zabbix2.png";
+import Zabbix3 from "../assets/monitoring/zabbix3.png";
 
 const Monitoring = () => {
   return (
@@ -46,6 +58,13 @@ const Monitoring = () => {
         <br />
         exit;
       </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={GLPIbdd}
+          alt="code de déploiement HTTP apache"
+        />
+      </div>
       <p>
         On poursuit avec l'installation de GLPI en récupérant sa dernière
         version sur le dépôt officiel :{" "}
@@ -74,6 +93,20 @@ const Monitoring = () => {
         Le portail est maintenant disponible sur le browser, avec le nom d'hôte
         suivi du répertoire /glpi. Par exemple, on peut mettre //localhost/glpi.
       </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={GLPIrun}
+          alt="code de déploiement HTTP apache"
+        />
+      </div>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={GLPIrun2}
+          alt="code de déploiement HTTP apache"
+        />
+      </div>
       <p>
         A noter : les premiers identifiants sont utilisateur :{" "}
         <b>glpi / glpi</b>, à modifier par la suite pour des raisons de
@@ -197,10 +230,166 @@ const Monitoring = () => {
         />
       </div>
       {/* INSTALLATION DE GRAFANA */}
-      <h3 className="sous_titre">Grafana</h3>
-      <h3 className="sous_titre">NodeExporter</h3>
+      <h3 className="sous_titre">Grafana + NodeExporter</h3>
+      <p>On installe le service et on édite le fichier de configuration :</p>
+      <p className="code">
+        apt install -y grafana
+        <br />
+        nano /etc/grafana/grafana.ini
+      </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={Grafana1}
+          alt="screenshot de la manipulation"
+        />
+      </div>
+      <p>On autorise le lancement du processus au démarrage avec :</p>
+      <p className="code">systemctl enable -now grafana-server</p>
+      <p>
+        On peut maintenant y accéder sur le navigateur sur <b>localhost:3000</b>{" "}
+        . On définit notre mot de passe pour sécuriser l'installation.
+      </p>
+      <p>
+        On peut maintenant installer NodeExporter ! On trouve la référence du
+        package le plus récent sur le site :{" "}
+        <a href="https://prometheus.io/download/">
+          https://prometheus.io/download/
+        </a>
+      </p>
+      <p className="code">
+        wget
+        https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+        <br />
+        tar -xvf node_exporter-1.8.2.linux-amd64.tar.gz
+        <br />
+        cd node_exporter-1.8.2.linux-amd64
+        <br />
+        mv node_exporter-1.8.2.linux-amd64 /usr/local/bin
+        <br />
+      </p>
+      <p>On vérifie la version installée :</p>
+      <p className="code">node_exporter –version</p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={Grafana2}
+          alt="screenshot de la manipulation"
+        />
+      </div>
+      <p>
+        On édite les paramètres du service sur le fichier{" "}
+        <b>/etc/systemd/node_exporter.service</b> :
+      </p>
+      <p className="code">nano /etc/systemd/system/node_exporter.service</p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={Grafana3}
+          alt="screenshot de la manipulation"
+        />
+      </div>
+      <p>
+        On peut maintenant relancer le service pour prendre en compte les
+        nouveaux paramètres.
+      </p>
+      <p className="code">
+        systemctl daemon-reload
+        <br />
+        systemctl enable node_exporter
+        <br />
+        systemctl start node_exporter
+        <br />
+        systemctl status node_exporter
+      </p>
+      <p>
+        Il nous reste à ajouter l'URL de NodeExporter pour lier Grafana à
+        Prometheus :
+      </p>
+      <p className="code">nano /etc/prometheus/prometheus.yml</p>
+      <p>
+        On ajoute le <b>"localhost:9100"</b> au fichier de configuration :
+      </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={NodeExporter}
+          alt="screenshot de la manipulation"
+        />
+      </div>
+      <p>
+        On relance Prometheus pour la prise en compte des nouveaux paramètres.
+      </p>
+      <p className="code">
+        systemctl restart prometheus
+        <br />
+        systemctl status prometheus
+      </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={NodeExporter2}
+          alt="screenshot de la manipulation"
+        />
+      </div>
+      <p>
+        Ensuite on retourne sur Grafana pour le configurer :
+        <ul>
+          <li>Cliquer sur data sources</li>
+          <li>Selectionner Prometheus</li>
+          <li>
+            Indiquer l’url de connexion <b>http://localhost:9090</b>
+          </li>
+          <li>
+            Cliquer sur <b>save and test</b>
+          </li>
+        </ul>
+      </p>
+      <p>
+        Enfin, création du dashboard :
+        <ul>
+          <li>
+            Cliquer sur le <b>+</b> en haut a droite dans Grafana
+          </li>
+          <li>
+            Cliquer sur <b>import dashboard</b>
+          </li>
+          <li>
+            Indiquez l'id <b>14513</b> (possibilité d'id sur
+            https://grafana.com/grafana/dashboards/)
+          </li>
+        </ul>
+      </p>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={NodeExporter3}
+          alt="screenshot de la manipulation"
+        />
+      </div>
       {/* INSTALLATION DE ZABBIX */}
       <h3 className="sous_titre">Zabbix</h3>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={Zabbix}
+          alt="screenshot de la manipulation"
+        />
+      </div>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={Zabbix2}
+          alt="screenshot de la manipulation"
+        />
+      </div>
+      <div className="screenshot">
+        <img
+          className="sc-img"
+          src={Zabbix3}
+          alt="screenshot de la manipulation"
+        />
+      </div>
     </div>
   );
 };
