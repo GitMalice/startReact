@@ -6,12 +6,13 @@ const Projet = () => {
     <div>
       <h2 className="etape">Linux, déploiement et architecture</h2>
       <p>
-        En premier, on peut vérifier l'état du réseau entre nos machines avec un
-        ping. On installe ensuite Samba :
+        La segmentation des réseaux et des services visent à optimiser la
+        sécurité. En effet, limiter les utilisateurs concernés seulement par un
+        service limite les risques d'intrusions, ou d'accès par mouvement
+        latéral. Le niveau de sécurité requis augement avec la confidentialité
+        des données. On peut établir la répartition des priorités selon le
+        schéma de couches suivantes :
       </p>
-      <p className="code">sudo apt install samba -y</p>
-      <p>On édite le fichier de configuration :</p>
-      <p className="code">sudo nano /etc/samba/smb.conf</p>
       <div className="screenshot">
         <img
           className="sc-img"
@@ -19,8 +20,15 @@ const Projet = () => {
           alt="screenshot de la manipulation"
         />
       </div>
-
-      <div className="screenshot">
+      <p>
+        <br />
+        <br />
+        <br />
+        <br />
+        Cette hiérarchie oriente notre choix d'architecture, pour cloisonner au
+        mieux les différents accès :
+      </p>
+      <div className="screenshot zoom-me">
         <img
           className="sc-img"
           src={ArchiAll}

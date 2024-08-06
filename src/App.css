@@ -66,3 +66,25 @@
   max-width: 839px;
   border: 1px solid olive;
 }
+
+.zoom-me {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 150px;
+}
+
+.zoom-me img {
+  transition: transform 0.3s ease;
+  width: 100%;
+  height: auto;
+  transform-origin: bottom;
+}
+
+.zoom-me:hover img {
+  transform: scale(1.5);
+}
+
+.zoom-me:hover {
+  width: 150%;
+  margin: -25%;
+}
