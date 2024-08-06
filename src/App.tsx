@@ -1,34 +1,54 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import Heading from "./components/Heading";
+// import { Section } from "./components/Section";
+// import List from "./components/List";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import imagePath from "./assets/tux_logo.png";
+import NavBar from "./components/NavBar";
+import Apache from "./components/Apache";
+import Projet from "./components/Projet";
+import Gitlab from "./components/Gitlab";
+import Backup from "./components/Backup";
+import Monitoring from "./components/Monitoring";
+import Samba from "./components/Samba";
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  let navItems = [
+    { label: "Projet", path: "/" },
+    { label: "Apache", path: "/apache" },
+    { label: "Backup", path: "/backup" },
+    { label: "Gitlab", path: "/gitlab" },
+    { label: "Monitoring", path: "/monitoring" },
+    { label: "Samba", path: "/samba" },
+  ];
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <h1>Test de modif</h1>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <NavBar
+          brandName="Go Linux PROJECT"
+          imageSrcPath={imagePath}
+          navItems={navItems}
+        />
+        {/* <Heading title={"Hello"} />
+        <Section title={"This is me"}>This is my section</Section>
+        <List
+          items={["menu1", "menu2", "menu3"]}
+          render={(item: string) => <span className="menu">{item}</span>}
+        /> */}
+        <div className="viewer">
+          <div className="content mx-3 mx-md-5">
+            <Routes>
+              <Route path="/" element={<Projet />} />
+              <Route path="/apache" element={<Apache />} />
+              <Route path="/backup" element={<Backup />} />
+              <Route path="/gitlab" element={<Gitlab />} />
+              <Route path="/monitoring" element={<Monitoring />} />
+              <Route path="/samba" element={<Samba />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
     </>
   );
 }
