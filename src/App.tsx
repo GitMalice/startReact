@@ -36,10 +36,13 @@ function App() {
           items={["menu1", "menu2", "menu3"]}
           render={(item: string) => <span className="menu">{item}</span>}
         /> */}
+        <Routes>
+          <Route path="/" element={<Projet />} />
+        </Routes>
         <div className="viewer">
           <div className="content mx-3 mx-md-5">
             <Routes>
-              <Route path="/" element={<Projet />} />
+              {/* <Route path="/" element={<Projet />} /> */}
               <Route path="/apache" element={<Apache />} />
               <Route path="/backup" element={<Backup />} />
               <Route path="/gitlab" element={<Gitlab />} />

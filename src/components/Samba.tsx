@@ -19,7 +19,7 @@ const Samba = () => {
           alt="screenshot de la manipulation"
         />
       </div>
-      <p>On y ajout à la fin :</p>
+      <p>On y ajoute à la fin :</p>
       <p className="code">
         [partage]
         <br />
