@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-import React from "react";
-import apacheRestartImage from "../assets/comp_apache/apache_restart.png";
-=======
 import ApacheImage1 from "../assets/apache/apache_restart.png";
 import ApacheImageConfigHTTPS from "../assets/apache/config-serverweb-http.png";
 import ApacheImageConfigHTTP from "../assets/apache/config-serverweb-https.png";
 import ApacheImageServerUp from "../assets/apache/capture_apache2.png";
->>>>>>> 53b989c467d4cad5ba68b486f5014625ad8de853
 
 const Apache = () => {
   return (
@@ -67,13 +62,6 @@ const Apache = () => {
       <p className="code">
         nano /etc/apache2/sites-available/http-to-https-conf
       </p>
-<<<<<<< HEAD
-      <img
-        className="screenshot"
-        src={apacheRestartImage}
-        alt="code d'installation d'apache"
-      />
-=======
       <div className="screenshot">
         <img
           className="sc-img"
@@ -175,7 +163,6 @@ const Apache = () => {
         Attention de ne pas supprimer plusieurs règles à la volée, les numéros
         pouvant se décaler au fur et à mesure...!
       </p>
->>>>>>> 53b989c467d4cad5ba68b486f5014625ad8de853
     </div>
   );
 };
