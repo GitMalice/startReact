@@ -108,6 +108,61 @@ const Apache = () => {
           alt="code de déploiement apache"
         />
       </div>
+      <h5 className="sous-titre">Configuration du firewall</h5>
+      <p>
+        Pour configurer notre pare-feu, on souhaite en réduire tous les accès
+        superflux pour ne garder que l'utilisation essentielle : visibilité du
+        serveur web en HTTPS, et un accès de maintenance par SSH par une adresse
+        prédéfinie.
+      </p>
+      <p>On commence par l'autorisation SSH :</p>
+      <p className="code">
+        sudo ufw allow ssh
+        <br />
+        <em>ou</em>
+        <br />
+        sudo ufw allow 22/tcp
+      </p>
+      <p>On autorise les connexions HTTP et HTTPS :</p>
+      <p className="code">
+        sudo ufw allow 80/tcp
+        <br />
+        sudo ufw allow 443/tcp
+      </p>
+      <p>On bloque le reste des connexions par défaut avec la commande :</p>
+      <p className="code">sudo ufw default deny incoming</p>
+      <p>Pour afficher les règles en place, on lance :</p>
+      <p className="code">ufw status </p>
+      <p>
+        <b>
+          Possible axe d'amélioration : on peut également ajouter le port 123
+          pour le NTP (Network Time Protocol), qui permet d'avoir une heure
+          synchronisée sur l'ensemble des machines, et ainsi, des logs
+          cohérents.
+        </b>
+      </p>
+      <p className="code">sudo ufw allow out 123</p>
+      <p>
+        Pour réduire davantage les accès, on souhaite spécifier l'IP de la
+        personne qui sera responsable de la maintenance du serveur - aucun autre
+        accès SSH que le sien ne sera autorisé.
+      </p>
+      <p className="code">
+        sudo ufw allow from [ip-du-developpeur] to any port 22 proto tcp
+      </p>
+      <p>
+        On supprime la règle précédente, qui donne des permissions plus large
+        que la nouvelle :
+      </p>
+      <p className="code">sudo ufw status numbered</p>
+      <p className="code-expl">
+        la liste numérotée permet de faire référence aux règles par leur numéro
+      </p>
+      <p className="code">sudo ufw delete &lt;numéro de la règle&gt;</p>
+      <p>
+        Attention de ne pas supprimer plusieurs règles à la volée, les numéros
+        pouvant se décaler au fur et à mesure...!
+      </p>
     </div>
   );
 };

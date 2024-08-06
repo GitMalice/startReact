@@ -7,7 +7,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import imagePath from "./assets/tux_logo.png";
 import NavBar from "./components/NavBar";
 import Apache from "./components/Apache";
-import Home from "./components/Home";
+import Projet from "./components/Projet";
 import Gitlab from "./components/Gitlab";
 import Backup from "./components/Backup";
 import Monitoring from "./components/Monitoring";
@@ -15,7 +15,7 @@ import Samba from "./components/Samba";
 
 function App() {
   let navItems = [
-    { label: "Home", path: "/" },
+    { label: "Projet", path: "/" },
     { label: "Apache", path: "/apache" },
     { label: "Backup", path: "/backup" },
     { label: "Gitlab", path: "/gitlab" },
@@ -39,7 +39,7 @@ function App() {
         <div className="viewer">
           <div className="content mx-3 mx-md-5">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Projet />} />
               <Route path="/apache" element={<Apache />} />
               <Route path="/backup" element={<Backup />} />
               <Route path="/gitlab" element={<Gitlab />} />
