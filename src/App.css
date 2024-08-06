@@ -1,24 +1,3 @@
-* {
-  margin: 0;
-  padding: 0.25 rem;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: whitesmoke;
-  color: darkolivegreen;
-  display: grid;
-  /*place-content: center;*/
-}
-
-button {
-  font-size: 2rem;
-}
-
-.menu {
-  display: inline;
-}
-
 /* STYLE NAVBAR */
 
 .nav-item {
@@ -38,6 +17,8 @@ button {
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
+  padding: 0 25px;
 }
 
 .content {
@@ -51,25 +32,37 @@ button {
 }
 
 .sous-titre {
-  margin-top: 50px;
+  margin-top: 40px;
   margin-bottom: 15px;
 }
 
 .code {
   margin: 0 2rem;
+  margin-bottom: 30px;
   padding: 0.2rem 2rem;
   color: grey;
   font-weight: 700;
   background-color: rgba(128, 128, 0, 0.11);
+  /* max-width: 80%; */
+  word-wrap: break-word;
 }
 
 .code_expl {
   margin: 0 2rem;
+  margin-top: -10px;
+  margin-bottom: 30px;
   padding: 0.2rem 2rem;
   color: rgb(146, 146, 33);
   background-color: rgba(128, 128, 0, 0.041);
 }
 
 .screenshot {
-  border: red;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+.sc-img {
+  margin: 0 2rem;
+  max-width: 839px;
+  border: 1px solid olive;
 }
