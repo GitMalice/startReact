@@ -116,31 +116,31 @@ const Monitoring = () => {
       <h3 className="sous_titre">Prometheus, feu!</h3>
       <p>1. On commence par installer le service</p>
       <p className="code">
-        useradd –no-create-home –shell /bin/false/ Prometheus
+        sudo useradd --no-create-home --shell /bin/false/ prometheus
         <br />
-        useradd –no-create-home –shell /bin/false node_exporter
+        sudo useradd --no-create-home --shell /bin/false node_exporter
       </p>
       <p>2. On crée les répertoires d'installation :</p>
       <p className="code">
-        mkdir /etc/Prometheus
+        sudo mkdir /etc/prometheus
         <br />
-        mkdir /var/lib/prometheus
+        sudo mkdir /var/lib/prometheus
       </p>
       <p>
         3. On donne les droits à ces nouveaux utilisateurs sur les répertoires
         correspondants :
       </p>
       <p className="code">
-        chown prometheus:prometheus /var/lib/Prometheus
+        sudo chown prometheus:prometheus /var/lib/Prometheus
         <br />
-        chown prometheus:Prometheus /etc/prometheus
+        sudo chown prometheus:prometheus /etc/prometheus
       </p>
       <p>
         4. On récupère la dernière version de prometheus en pointant vers son
         dépôt :
       </p>
       <p className="code">
-        wget
+        sudo wget
         https://github.com/prometheus/prometheus/releases/download/v2.54.0-rc.0/prometheus-2.54.0-rc.0.linux-amd64.tar.gz
       </p>
       <p>5. Puis on décompresse l'archive :</p>
@@ -156,21 +156,21 @@ const Monitoring = () => {
         attribue les droits utilisateurs prévus à cet effet :
       </p>
       <p className="code">
-        cp Prometheus /usr/local/bin
+        cp prometheus /usr/local/bin
         <br />
         cp promtool /usr/local/bin
         <br />
         <br />
-        chown prometheus:prometheus /usr/local/bin/Prometheus
+        sudo chown prometheus:prometheus /usr/local/bin/prometheus
         <br />
-        chown prometheus:prometheus /usr/local/bin/promtool
+        sudo chown prometheus:prometheus /usr/local/bin/promtool
       </p>
       <p>
         7. On peut vérifier que les droits on bien été appliqués sur ces
         répertoires avec :
       </p>
       <p className="code">
-        ls-l /usr/local/bin/Prometheus
+        ls-l /usr/local/bin/prometheus
         <br />
         ls-l /usr/local/bin/promtool
       </p>
@@ -185,11 +185,11 @@ const Monitoring = () => {
         cp prometheus.yml /etc/prometheus
         <br />
         <br />
-        chown -R prometheus:prometheus /etc/prometheus/consoles
+        sudo chown -R prometheus:prometheus /etc/prometheus/consoles
         <br />
-        chown -R prometheus:prometheus /etc/prometheus/console_libraries
+        sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
         <br />
-        chown -R prometheus:prometheus /etc/prometheus/promtool
+        sudo chown -R prometheus:prometheus /etc/prometheus/promtool
       </p>
       <p>
         9. On peut vérifier que Prometheus est bien installé avec l'affichage de
@@ -200,7 +200,7 @@ const Monitoring = () => {
         10. La configuration du service est disponible dans le fichier{" "}
         <b>/etc/systemd/system/Prometheus.service</b> . On l'édite avec :
       </p>
-      <p className="code">nano /etc/systemd/system/Prometheus.service</p>
+      <p className="code">sudo nano /etc/systemd/system/Prometheus.service</p>
       <div className="screenshot">
         <img
           className="sc-img"
@@ -213,13 +213,13 @@ const Monitoring = () => {
         relance le service.
       </p>
       <p className="code">
-        systemctl daemon-reload
+        sudo systemctl daemon-reload
         <br />
-        systemctl start prometheus
+        sudo systemctl start prometheus
         <br />
-        systemctl enable prometheus
+        sudo systemctl enable prometheus
         <br />
-        systemctl status prometheus
+        sudo systemctl status prometheus
       </p>
       <p>12. On peut le voir tourner en vérifiant avec notre-IP:9090</p>
       <div className="screenshot">
@@ -233,9 +233,9 @@ const Monitoring = () => {
       <h3 className="sous_titre">Grafana + NodeExporter</h3>
       <p>On installe le service et on édite le fichier de configuration :</p>
       <p className="code">
-        apt install -y grafana
+        sudo apt install -y grafana
         <br />
-        nano /etc/grafana/grafana.ini
+        sudo nano /etc/grafana/grafana.ini
       </p>
       <div className="screenshot">
         <img
@@ -245,7 +245,7 @@ const Monitoring = () => {
         />
       </div>
       <p>On autorise le lancement du processus au démarrage avec :</p>
-      <p className="code">systemctl enable -now grafana-server</p>
+      <p className="code">sudo systemctl enable -now grafana-server</p>
       <p>
         On peut maintenant y accéder sur le navigateur sur <b>localhost:3000</b>{" "}
         . On définit notre mot de passe pour sécuriser l'installation.
@@ -258,7 +258,7 @@ const Monitoring = () => {
         </a>
       </p>
       <p className="code">
-        wget
+        sudo wget
         https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
         <br />
         tar -xvf node_exporter-1.8.2.linux-amd64.tar.gz
@@ -269,7 +269,7 @@ const Monitoring = () => {
         <br />
       </p>
       <p>On vérifie la version installée :</p>
-      <p className="code">node_exporter –version</p>
+      <p className="code">node_exporter --version</p>
       <div className="screenshot">
         <img
           className="sc-img"
@@ -281,7 +281,9 @@ const Monitoring = () => {
         On édite les paramètres du service sur le fichier{" "}
         <b>/etc/systemd/node_exporter.service</b> :
       </p>
-      <p className="code">nano /etc/systemd/system/node_exporter.service</p>
+      <p className="code">
+        sudo nano /etc/systemd/system/node_exporter.service
+      </p>
       <div className="screenshot">
         <img
           className="sc-img"
@@ -296,11 +298,11 @@ const Monitoring = () => {
       <p className="code">
         systemctl daemon-reload
         <br />
-        systemctl enable node_exporter
+        sudo systemctl enable node_exporter
         <br />
-        systemctl start node_exporter
+        sudo systemctl start node_exporter
         <br />
-        systemctl status node_exporter
+        sudo systemctl status node_exporter
       </p>
       <p>
         Il nous reste à ajouter l'URL de NodeExporter pour lier Grafana à
@@ -321,9 +323,9 @@ const Monitoring = () => {
         On relance Prometheus pour la prise en compte des nouveaux paramètres.
       </p>
       <p className="code">
-        systemctl restart prometheus
+        sudo systemctl restart prometheus
         <br />
-        systemctl status prometheus
+        sudo systemctl status prometheus
       </p>
       <div className="screenshot">
         <img
