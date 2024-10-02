@@ -116,11 +116,12 @@ const Monitoring = () => {
       <h3 className="sous_titre">Prometheus, feu!</h3>
       <p>1. On commence par installer le service</p>
       <p className="code">
-        sudo useradd --no-create-home --shell /bin/false prometheus
+        sudo groupadd prometheus
+        <br />
+        sudo useradd --no-create-home --shell /bin/false -g prometheus
+        prometheus
         <br />
         sudo useradd --no-create-home --shell /bin/false node_exporter
-        <br />
-        sudo groupadd prometheus
       </p>
       <p>2. On crée les répertoires d'installation :</p>
       <p className="code">
