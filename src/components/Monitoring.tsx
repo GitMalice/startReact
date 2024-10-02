@@ -116,7 +116,7 @@ const Monitoring = () => {
       <h3 className="sous_titre">Prometheus, feu!</h3>
       <p>1. On commence par installer le service</p>
       <p className="code">
-        sudo useradd --no-create-home --shell /bin/false/ prometheus
+        sudo useradd --no-create-home --shell /bin/false/prometheus
         <br />
         sudo useradd --no-create-home --shell /bin/false node_exporter
       </p>
@@ -131,7 +131,7 @@ const Monitoring = () => {
         correspondants :
       </p>
       <p className="code">
-        sudo chown prometheus:prometheus /var/lib/Prometheus
+        sudo chown prometheus:prometheus /var/lib/prometheus
         <br />
         sudo chown prometheus:prometheus /etc/prometheus
       </p>
