@@ -197,7 +197,7 @@ const Monitoring = () => {
         9. On peut vérifier que Prometheus est bien installé avec l'affichage de
         la version :
       </p>
-      <p className="code">prometheus -verion</p>
+      <p className="code">prometheus --version</p>
       <p>
         10. La configuration du service est disponible dans le fichier{" "}
         <b>/etc/systemd/system/Prometheus.service</b> . On l'édite avec :
