@@ -172,9 +172,9 @@ const Monitoring = () => {
         répertoires avec :
       </p>
       <p className="code">
-        ls-l /usr/local/bin/prometheus
+        ls -l /usr/local/bin/prometheus
         <br />
-        ls-l /usr/local/bin/promtool
+        ls -l /usr/local/bin/promtool
       </p>
       <p>
         8. Même chose maintenant avec la suite des répertoires à installer :
