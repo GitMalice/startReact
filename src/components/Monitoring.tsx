@@ -158,9 +158,9 @@ const Monitoring = () => {
         attribue les droits utilisateurs prévus à cet effet :
       </p>
       <p className="code">
-        cp prometheus /usr/local/bin
+        sudo cp prometheus /usr/local/bin
         <br />
-        cp promtool /usr/local/bin
+        sudo cp promtool /usr/local/bin
         <br />
         <br />
         sudo chown prometheus:prometheus /usr/local/bin/prometheus
