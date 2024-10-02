@@ -119,17 +119,14 @@ const Monitoring = () => {
         sudo useradd --no-create-home --shell /bin/false prometheus
         <br />
         sudo useradd --no-create-home --shell /bin/false node_exporter
+        <br />
+        sudo groupadd prometheus
       </p>
-      <p>
-        2. On crée les répertoires d'installation et nouvel utilisateur
-        prometheus :
-      </p>
+      <p>2. On crée les répertoires d'installation :</p>
       <p className="code">
         sudo mkdir /etc/prometheus
         <br />
         sudo mkdir /var/lib/prometheus
-        <br />
-        sudo groupadd prometheus
       </p>
       <p>
         3. On donne les droits à ces nouveaux utilisateurs sur les répertoires
