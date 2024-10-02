@@ -180,11 +180,11 @@ const Monitoring = () => {
         8. Même chose maintenant avec la suite des répertoires à installer :
       </p>
       <p className="code">
-        cp -R consoles /etc/prometheus
+        sudo cp -R consoles /etc/prometheus
         <br />
-        cp -R console_libraries /etc/prometheus
+        sudo cp -R console_libraries /etc/prometheus
         <br />
-        cp prometheus.yml /etc/prometheus
+        sudo cp prometheus.yml /etc/prometheus
         <br />
         <br />
         sudo chown -R prometheus:prometheus /etc/prometheus/consoles
