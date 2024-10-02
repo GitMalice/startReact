@@ -205,19 +205,46 @@ const Monitoring = () => {
       <p className="code">
         sudo nano /etc/systemd/system/Prometheus.service
         <br />
+        <br />
         Ajout du contenu:
         <br />
-        [Unit] Description=Prometheus
+        <br />
+        [Unit]
+        <br />
+        Description=Prometheus
+        <br />
         Documentation=https://prometheus.io/docs/introduction/overview/
-        Wants=network-online.target After=network-online.target [Service]
-        Type=simple User=prometheus Group=prometheus ExecReload=/bin/kill -HUP
-        \$MAINPID ExecStart=/usr/local/bin/prometheus \
-        --config.file=/etc/prometheus/prometheus.yml \
-        --storage.tsdb.path=/var/lib/prometheus \
-        --web.console.templates=/etc/prometheus/consoles \
-        --web.console.libraries=/etc/prometheus/console_libraries \
+        <br />
+        Wants=network-online.target
+        <br />
+        After=network-online.target
+        <br />
+        <br />
+        [Service]
+        <br />
+        Type=simple
+        <br />
+        User=prometheus
+        <br />
+        Group=prometheus
+        <br />
+        ExecReload=/bin/kill -HUP \$MAINPID
+        <br />
+        ExecStart=/usr/local/bin/prometheus \<br />
+        --config.file=/etc/prometheus/prometheus.yml \<br />
+        --storage.tsdb.path=/var/lib/prometheus \<br />
+        --web.console.templates=/etc/prometheus/consoles \<br />
+        --web.console.libraries=/etc/prometheus/console_libraries \<br />
         --web.listen-address=0.0.0.0:9090 \ --web.external-url=
-        SyslogIdentifier=prometheus Restart=always [Install]
+        <br />
+        <br />
+        SyslogIdentifier=prometheus
+        <br />
+        Restart=always
+        <br />
+        <br />
+        [Install]
+        <br />
         WantedBy=multi-user.target
       </p>
       <div className="screenshot">
