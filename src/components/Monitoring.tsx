@@ -202,13 +202,9 @@ const Monitoring = () => {
         10. La configuration du service est disponible dans le fichier{" "}
         <b>/etc/systemd/system/Prometheus.service</b> . On l'édite avec :
       </p>
+      <p className="code">sudo nano /etc/systemd/system/Prometheus.service</p>
+      <p>Ajout du contenu:</p>
       <p className="code">
-        sudo nano /etc/systemd/system/Prometheus.service
-        <br />
-        <br />
-        Ajout du contenu:
-        <br />
-        <br />
         [Unit]
         <br />
         Description=Prometheus
@@ -231,11 +227,12 @@ const Monitoring = () => {
         ExecReload=/bin/kill -HUP \$MAINPID
         <br />
         ExecStart=/usr/local/bin/prometheus \<br />
-        --config.file=/etc/prometheus/prometheus.yml \<br />
-        --storage.tsdb.path=/var/lib/prometheus \<br />
-        --web.console.templates=/etc/prometheus/consoles \<br />
-        --web.console.libraries=/etc/prometheus/console_libraries \<br />
-        --web.listen-address=0.0.0.0:9090 \ --web.external-url=
+        &nbsp;&nbsp;--config.file=/etc/prometheus/prometheus.yml \<br />
+        &nbsp;&nbsp;--storage.tsdb.path=/var/lib/prometheus \<br />
+        &nbsp;&nbsp;--web.console.templates=/etc/prometheus/consoles \<br />
+        &nbsp;&nbsp;--web.console.libraries=/etc/prometheus/console_libraries \
+        <br />
+        &nbsp;&nbsp;--web.listen-address=0.0.0.0:9090 \ --web.external-url=
         <br />
         <br />
         SyslogIdentifier=prometheus
