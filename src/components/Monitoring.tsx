@@ -202,7 +202,24 @@ const Monitoring = () => {
         10. La configuration du service est disponible dans le fichier{" "}
         <b>/etc/systemd/system/Prometheus.service</b> . On l'édite avec :
       </p>
-      <p className="code">sudo nano /etc/systemd/system/Prometheus.service</p>
+      <p className="code">
+        sudo nano /etc/systemd/system/Prometheus.service
+        <br />
+        Ajout du contenu:
+        <br />
+        [Unit] Description=Prometheus
+        Documentation=https://prometheus.io/docs/introduction/overview/
+        Wants=network-online.target After=network-online.target [Service]
+        Type=simple User=prometheus Group=prometheus ExecReload=/bin/kill -HUP
+        \$MAINPID ExecStart=/usr/local/bin/prometheus \
+        --config.file=/etc/prometheus/prometheus.yml \
+        --storage.tsdb.path=/var/lib/prometheus \
+        --web.console.templates=/etc/prometheus/consoles \
+        --web.console.libraries=/etc/prometheus/console_libraries \
+        --web.listen-address=0.0.0.0:9090 \ --web.external-url=
+        SyslogIdentifier=prometheus Restart=always [Install]
+        WantedBy=multi-user.target
+      </p>
       <div className="screenshot">
         <img
           className="sc-img"
