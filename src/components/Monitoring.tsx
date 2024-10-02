@@ -227,10 +227,13 @@ const Monitoring = () => {
         ExecReload=/bin/kill -HUP \$MAINPID
         <br />
         ExecStart=/usr/local/bin/prometheus \<br />
-        &nbsp;&nbsp;--config.file=/etc/prometheus/prometheus.yml \<br />
-        &nbsp;&nbsp;--storage.tsdb.path=/var/lib/prometheus \<br />
-        &nbsp;&nbsp;--web.console.templates=/etc/prometheus/consoles \<br />
-        &nbsp;&nbsp;--web.console.libraries=/etc/prometheus/console_libraries \
+        &nbsp;&nbsp;&nbsp;&nbsp;--config.file=/etc/prometheus/prometheus.yml \
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;--storage.tsdb.path=/var/lib/prometheus \<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;--web.console.templates=/etc/prometheus/consoles
+        \<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;--web.console.libraries=/etc/prometheus/console_libraries
+        \
         <br />
         &nbsp;&nbsp;--web.listen-address=0.0.0.0:9090 \ --web.external-url=
         <br />
