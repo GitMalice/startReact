@@ -118,8 +118,7 @@ const Monitoring = () => {
       <p className="code">
         sudo groupadd prometheus
         <br />
-        sudo useradd --no-create-home --shell /bin/false -g prometheus
-        prometheus
+        sudo useradd -s /sbin/nologin --system -g prometheus prometheus
         <br />
         sudo useradd --no-create-home --shell /bin/false node_exporter
       </p>
